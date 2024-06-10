@@ -7,22 +7,19 @@ Minishell is a simplified [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)
 ## How to use it :
 #### (Works only on Mac or Linux)
 
-Clone the repository:
+```bash
+# Clone the repository
+git clone https://github.com/yvann-ba/minishell.git
 
-`git clone https://github.com/yvann-ba/minishell.git`
+# Navigate to the project directory
+cd minishell
 
-Navigate to the project directory:
+# Build the project using Make
+make
 
-`cd minishell`
-
-Build the project using Make:
-
-`make`
-
-Run minishell and enjoy (:
-
-`./minishell`
-
+# Run minishell and enjoy (:
+./minishell
+```
 ## Features 🌟
 - Executes commands from an absolute, relative, or environment PATH like `/bin/ls` or `ls`.
 - Supports single and double quotes.
