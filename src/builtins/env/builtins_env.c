@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:30:21 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/04 12:43:13 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:41:05 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	remove_env_var(char *var, char ***env)
 	while ((*env)[i])
 	{
 		if (ft_strncmp((*env)[i], var, var_len) \
-		== 0 && (*env)[i][var_len] == '=')
+		== 0 ) // && (*env)[i][var_len] == '=')
 		{
 			free((*env)[i]);
 			while ((*env)[i + 1])
