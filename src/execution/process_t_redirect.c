@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:58:15 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/10 20:27:16 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:09:07 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	fill_t_redirect(t_minishell *shell)
 	shell->redirect_array[0].outfile.name = NULL;
 	shell->redirect_array[0].outfile.fd = -1;
 	shell->redirect_array[0].argv = NULL;
+	shell->exit_status = 0;
 	fill_redirect_array(shell);
 }
