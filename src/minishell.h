@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 12:35:30 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 13:52:50 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_redirect
 	t_file		infile;
 	t_file		outfile;
 	char		**argv;
+	int			pid;
 }	t_redirect;
 
 typedef struct s_coord
@@ -109,6 +110,7 @@ typedef struct s_minishell
 	int			is_plus_equal;
 	int			env_size;
 	int			syntax_error;
+	int			pipes[MAX_PIPES][2];
 
 }	t_minishell;
 
@@ -208,6 +210,7 @@ int			check_length_and_sign(t_token *current, t_minishell *shell,
 int			process_exit_arg(t_token *current, t_minishell *shell, int *i);
 int			check_exit_arg_validity(t_token *current,
 				t_minishell *shell, int *i);
+void		close_fd_pipe(int pipes[MAX_PIPES][2]);
 
 //BUILTINS_UTILS
 int			is_flag_n(char *str);

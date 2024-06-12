@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:24:42 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 09:10:50 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/12 13:34:59 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,51 @@ void	init_pipes(int pipes[MAX_PIPES][2])
 	}
 }
 
+// int	handle_wait(t_minishell *shell)
+// {
+// 	int		i;
+// 	int		status;
+// 	int		last_status;
+// 	pid_t	pid;
+
+// 	i = 0;
+// 	last_status = shell->exit_status;
+// 	signal(SIGINT, handle_sigint_without_prefix);
+// 	while (!(i < shell->nb_cmds))
+// 	{
+// 		pid = waitpid(shell->redirect_array[shell->nb_cmds].pid, &status, 0);
+// 		if (WIFEXITED(status))
+// 			last_status = WEXITSTATUS(status);
+// 		if (WIFSIGNALED(status))
+// 			last_status = 128 + WTERMSIG(status);
+// 		shell->nb_cmds--;
+// 	}
+// 	signal(SIGINT, handle_sigint);
+// 	return (last_status);
+// }
+
 int	handle_wait(t_minishell *shell)
 {
-	int		i;
 	int		status;
 	int		last_status;
-	pid_t	pid;
 
-	i = 0;
 	last_status = shell->exit_status;
 	signal(SIGINT, handle_sigint_without_prefix);
-	while (i < shell->nb_cmds)
+	waitpid(shell->redirect_array[shell->nb_cmds - 1].pid, &status, 0);
+	close_fd_pipe(shell->pipes);
+	while(0 <= shell->nb_cmds)
 	{
-		pid = waitpid(-1, &status, 0);
-		if (pid == -1)
-		{
-			break ;
-		}
-		if (WIFEXITED(status))
-			last_status = WEXITSTATUS(status);
-		if (WIFSIGNALED(status))
-			last_status = 128 + WTERMSIG(status);
-		i++;
+		waitpid(shell->redirect_array[shell->nb_cmds - 1].pid, &status, 0);
+		shell->nb_cmds--;
 	}
+	if (WIFEXITED(status))
+		last_status = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+		last_status = WEXITSTATUS(status);
 	signal(SIGINT, handle_sigint);
 	return (last_status);
 }
+
 
 int	is_not_token_word(t_token *current)
 {

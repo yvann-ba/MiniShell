@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 09:42:52 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 13:52:44 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	handle_sigint_without_prefix(int sig)
 void	handle_sigquit(int sig)
 {
 	(void)sig;
+	printf("Quit (core dumped)\n");
 	g_exit_signal = 2;
 }
 
