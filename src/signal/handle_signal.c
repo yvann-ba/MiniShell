@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 08:43:28 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/12 13:40:43 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	handle_sigint_without_prefix(int sig)
 void	handle_sigquit(int sig)
 {
 	(void)sig;
+	printf("Quit (core dumped)\n");
 	g_exit_signal = 2;
 }
 

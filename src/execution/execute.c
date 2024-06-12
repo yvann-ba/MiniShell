@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:29 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 14:35:46 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/12 11:31:02 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ static void	execute_commands(t_minishell *shell, int i, int pipes[MAX_PIPES][2])
 	while (i < shell->nb_cmds)
 	{
 		if (shell->redirect_array[i].argv != NULL
-			&& shell->redirect_array[i].argv[0] != NULL
-			&& is_file(shell->redirect_array[0].argv[0]) != 0)
+			&& shell->redirect_array[i].argv[0] != NULL)
 			ft_exec(shell->redirect_array, i, shell, pipes);
 		else if (shell->redirect_array[0].argv != NULL && is_file(shell->redirect_array[0].argv[0]) == 0)
 			check_invalid_folder(shell->redirect_array[0].argv[0], shell);
@@ -55,15 +54,15 @@ static void	execute_commands(t_minishell *shell, int i, int pipes[MAX_PIPES][2])
 void	execute_command_shell(t_minishell *shell)
 {
 	int		i;
-	int		pipes[MAX_PIPES][2];
+	
 
 	i = 0;
-	init_pipes(pipes);
+	init_pipes(shell->pipes);
 	if (shell->nb_cmds - 1 < MAX_PIPES)
 	{
 		check_commands(shell, i);
 		if (shell->exit_status != 2)
-			execute_commands(shell, i, pipes);
+			execute_commands(shell, i, shell->pipes);
 		shell->exit_status = handle_wait(shell);
 	}
 }

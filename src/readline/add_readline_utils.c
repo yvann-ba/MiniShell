@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_readline_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:19:09 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 11:31:14 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	free_read(t_minishell *shell)
 		free_tab_here_doc(shell->tab_here_doc, shell->nb_cmds);
 		shell->tab_here_doc = NULL;
 	}
+	close_fd_pipe(shell->pipes);
 }
 
 int	read_input(t_minishell *shell)
