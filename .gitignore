@@ -68,4 +68,3 @@ libft/string/ft_substr.o
 libft/string/ft_tab_len.o
 libft/string/ft_tolower.o
 libft/string/ft_toupper.o
-del.supp
