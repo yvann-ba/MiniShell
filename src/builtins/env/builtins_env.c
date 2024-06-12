@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:30:21 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 13:41:05 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 12:35:57 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	remove_env_var(char *var, char ***env)
 	while ((*env)[i])
 	{
 		if (ft_strncmp((*env)[i], var, var_len) \
-		== 0 ) // && (*env)[i][var_len] == '=')
+		== 0)
 		{
 			free((*env)[i]);
 			while ((*env)[i + 1])
@@ -72,28 +72,30 @@ static int	check_and_print_error(t_token *arg_lst, int *exit_status)
 static void	print_environment(char **env, int *exit_status)
 {
 	int		i;
-	char	*equal_sign_ptr;
+	char	*current_pwd;
+	char	*new_pwd;
 
-	i = 0;
-	while (env[i] != NULL)
+	current_pwd = getcwd(NULL, 0);
+	if (current_pwd != NULL)
 	{
-		equal_sign_ptr = ft_strchr(env[i], '=');
-		if (equal_sign_ptr != NULL && *(equal_sign_ptr + 1) != '\0')
+		new_pwd = ft_strjoin("PWD=", current_pwd);
+		if (new_pwd != NULL)
 		{
-			if (!(*(equal_sign_ptr + 1) == '\'' && *(equal_sign_ptr + 2) \
-				== '\'' && *(equal_sign_ptr + 3) == '\0'))
+			i = 0;
+			while (env[i] != NULL)
 			{
-				if (ft_printf("%s\n", env[i]) < 0)
+				if (strncmp(env[i], "PWD=", 4) == 0)
 				{
-					perror("env command failed");
-					*exit_status = 1;
-					return ;
+					free(env[i]);
+					env[i] = new_pwd;
+					break ;
 				}
+				i++;
 			}
 		}
-		i++;
+		free(current_pwd);
 	}
-	*exit_status = 0;
+	environment_trail(env, exit_status);
 }
 
 void	ft_env(t_token *arg_lst, char **env, int *exit_status)

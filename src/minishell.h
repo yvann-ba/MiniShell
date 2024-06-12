@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 08:43:37 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/12 12:35:30 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ int			length_until_equal(const char *str);
 int			process_export(t_token *tokens, char ***env, t_minishell *shell);
 void		remove_plus_char(char *str);
 char		*prepare_env_var(char *var);
+void		environment_trail(char **env, int *exit_status);
 
 //STRUCT_UTILS
 t_minishell	*init_minishell(char **envp);
