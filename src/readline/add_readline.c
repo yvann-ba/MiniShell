@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_readline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:19:16 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:59:49 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	execute_command_logic(t_minishell *shell)
 			shell->exit_status = 127;
 			return ;
 		}
-		if (shell->exit_status != 2)
-			execute_command_shell(shell);
+		//if (shell->exit_status != 2)
+		execute_command_shell(shell);
 	}
 }
 

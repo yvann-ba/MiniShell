@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_final.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:07 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:24:26 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 09:10:56 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	handle_execute(t_minishell *shell, t_redirect *redirect_array,
 		free_minishell(shell);
 		ft_putstr_fd("minishell: command not found\n", 2);
 		exit(127);
+		
 	}
 }
 
@@ -101,8 +102,6 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 	}
 	if (pid == 0)
 	{
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, handle_sigquit);
 		handle_dup_close(index, redirect_array, shell, pipes);
 		handle_execute(shell, redirect_array, index);
 	}
@@ -111,5 +110,6 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 		if (pipes[index][WRITE_END] != -1)
 			close(pipes[index][WRITE_END]);
 	}
+	g_exit_signal = 0;
 	signal(SIGINT, handle_sigint);
 }

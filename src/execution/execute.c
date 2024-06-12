@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:29 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/10 20:34:31 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:35:46 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	execute_commands(t_minishell *shell, int i, int pipes[MAX_PIPES][2])
 			&& shell->redirect_array[i].argv[0] != NULL
 			&& is_file(shell->redirect_array[0].argv[0]) != 0)
 			ft_exec(shell->redirect_array, i, shell, pipes);
-		else if (is_file(shell->redirect_array[0].argv[0]) == 0)
+		else if (shell->redirect_array[0].argv != NULL && is_file(shell->redirect_array[0].argv[0]) == 0)
 			check_invalid_folder(shell->redirect_array[0].argv[0], shell);
 		i++;
 	}
