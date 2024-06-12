@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_to_exec2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:24:42 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:08:37 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/12 09:10:50 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	is_file(const char *path)
 {
 	struct stat	statbuf;
 
+	if (!path)	
+		return (-1);
 	if (stat(path, &statbuf) == -1)
 		return (-1);
 	if (S_ISREG(statbuf.st_mode))
@@ -71,6 +73,7 @@ int	handle_wait(t_minishell *shell)
 
 	i = 0;
 	last_status = shell->exit_status;
+	signal(SIGINT, handle_sigint_without_prefix);
 	while (i < shell->nb_cmds)
 	{
 		pid = waitpid(-1, &status, 0);
@@ -80,10 +83,11 @@ int	handle_wait(t_minishell *shell)
 		}
 		if (WIFEXITED(status))
 			last_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			last_status = WTERMSIG(status);
+		if (WIFSIGNALED(status))
+			last_status = 128 + WTERMSIG(status);
 		i++;
 	}
+	signal(SIGINT, handle_sigint);
 	return (last_status);
 }
 
