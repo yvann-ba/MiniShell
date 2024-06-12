@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_readline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 13:59:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/12 11:04:46 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int	execute_builtins(int argc, char **argv, t_minishell *shell)
 		&& arg_lst->value[3] == '\0')
 		ft_env(arg_lst, shell->env, &shell->exit_status);
 	else if (ft_strncmp(arg_lst->value, "exit", 4) == 0)
+	{
 		ft_exit(arg_lst, shell);
+	}
 	free_tokens(&arg_lst);
 	return (1);
 }
