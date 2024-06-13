@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:30:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 13:30:47 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/13 14:07:41 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int	check_first_argument(const char **input, t_minishell *shell)
 	{
 		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
 		shell->exit_status = 2;
+		shell->reset_exc = 1;
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 13:52:50 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/13 14:06:21 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_minishell
 	int			env_size;
 	int			syntax_error;
 	int			pipes[MAX_PIPES][2];
+	int 		reset_exc;
 
 }	t_minishell;
 
