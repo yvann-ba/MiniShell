@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 12:20:12 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:49:53 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_read(t_minishell *shell)
 {
+	if (!shell)
+		return ;
 	if (shell->input != NULL)
 	{
 		free(shell->input);
