@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenization.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:30:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 10:17:17 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:30:47 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ static int	check_first_argument(const char **input, t_minishell *shell)
 	{
 		ft_putstr_fd(" command not found\n", 2);
 		shell->exit_status = 127;
+		return (1);
+	}
+	else if (**input == '|')
+	{
+		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
+		shell->exit_status = 2;
 		return (1);
 	}
 	return (0);

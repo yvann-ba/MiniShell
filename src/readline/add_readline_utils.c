@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_readline_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 12:20:12 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:21:41 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	read_input(t_minishell *shell)
 			shell->input = NULL;
 		}
 		shell->input = readline("minishell > ");
-		if (shell->input == NULL)
+		if (shell->input == NULL || ft_strcmp(shell->input, "exit") == 0)
 		{
 			local_exit_status = shell->exit_status;
 			free_minishell(shell);
