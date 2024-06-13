@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 10:08:26 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 11:11:11 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ static void	execute_command_logic(t_minishell *shell)
 		return ;
 	if (check_builtins(shell->redirect_array[0].argv[0]) == 1)
 	{
-		execute_builtins(ft_strlen_map(shell->redirect_array->argv),
-			shell->redirect_array->argv, shell);
+		if (shell->exit_status != 2)
+			execute_builtins(ft_strlen_map(shell->redirect_array->argv),
+				shell->redirect_array->argv, shell);
 	}
 	else
 	{
-		shell->redirect_array->argv[0] = check_command_existence(
-				shell->redirect_array[0].argv[0], shell->env);
 		if (shell->redirect_array->argv[0] == NULL)
 		{
 			ft_putstr_fd("minishell: command not found\n", 2);
