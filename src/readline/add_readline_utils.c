@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_readline_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 13:52:15 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/13 12:20:12 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	free_read(t_minishell *shell)
 	}
 	if (shell->redirect_array != NULL)
 	{
+		if (shell->nb_cmds == 0)
+			shell->nb_cmds++;
 		free_redirect_array(shell, shell->nb_cmds);
 		shell->redirect_array = NULL;
 	}
