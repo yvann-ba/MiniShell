@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:29 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 11:31:02 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 10:04:41 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	execute_command_shell(t_minishell *shell)
 	{
 		check_commands(shell, i);
 		if (shell->exit_status != 2)
+		{
 			execute_commands(shell, i, shell->pipes);
-		shell->exit_status = handle_wait(shell);
+			shell->exit_status = handle_wait(shell);
+		}
 	}
 }
