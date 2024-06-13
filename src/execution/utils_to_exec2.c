@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:24:42 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 10:02:42 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:24:53 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,42 +64,21 @@ void	init_pipes(int pipes[MAX_PIPES][2])
 	}
 }
 
-// int	handle_wait(t_minishell *shell)
-// {
-// 	int		i;
-// 	int		status;
-// 	int		last_status;
-// 	pid_t	pid;
-
-// 	i = 0;
-// 	last_status = shell->exit_status;
-// 	signal(SIGINT, handle_sigint_without_prefix);
-// 	while (!(i < shell->nb_cmds))
-// 	{
-// 		pid = waitpid(shell->redirect_array[shell->nb_cmds].pid, &status, 0);
-// 		if (WIFEXITED(status))
-// 			last_status = WEXITSTATUS(status);
-// 		if (WIFSIGNALED(status))
-// 			last_status = 128 + WTERMSIG(status);
-// 		shell->nb_cmds--;
-// 	}
-// 	signal(SIGINT, handle_sigint);
-// 	return (last_status);
-// }
-
 int	handle_wait(t_minishell *shell)
 {
 	int		status;
 	int		last_status;
+	int		nb_cmds;
 
 	last_status = shell->exit_status;
 	signal(SIGINT, handle_sigint_without_prefix);
 	waitpid(shell->redirect_array[shell->nb_cmds - 1].pid, &status, 0);
 	close_fd_pipe(shell->pipes);
-	while(0 < shell->nb_cmds)
+	nb_cmds = shell->nb_cmds;
+	while(0 < nb_cmds)
 	{
-		waitpid(shell->redirect_array[shell->nb_cmds - 1].pid, &status, 0);
-		shell->nb_cmds--;
+		waitpid(shell->redirect_array[nb_cmds - 1].pid, &status, 0);
+		nb_cmds--;
 	}
 	if (WIFEXITED(status))
 		last_status = WEXITSTATUS(status);
