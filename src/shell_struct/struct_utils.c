@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:32:24 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/10 19:11:12 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:51:03 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ t_minishell	*init_minishell(char **envp)
 	shell->env_size = 0;
 	shell->syntax_error = 0;
 	init_history(shell->history);
+	init_pipes(shell->pipes);
 	return (shell);
 }

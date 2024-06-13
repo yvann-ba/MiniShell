@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 11:24:08 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:41:57 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	debug_print_tokens(t_token *tokens)
 
 static void	execute_command_logic(t_minishell *shell)
 {
+	init_pipes(shell->pipes);
 	if (shell->redirect_array[0].argv == NULL)
 		return ;
-	init_pipes(shell->pipes);
 	if (check_builtins(shell->redirect_array[0].argv[0]) == 1)
 	{
 		if (shell->exit_status != 2)

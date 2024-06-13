@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 13:21:41 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/13 13:55:54 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_read(t_minishell *shell)
 {
+	if (!shell)
+		return ;
 	if (shell->input != NULL)
 	{
 		free(shell->input);
