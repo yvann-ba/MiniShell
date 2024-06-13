@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 13:55:54 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/13 14:20:09 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	read_input(t_minishell *shell)
 		shell->input = readline("minishell > ");
 		if (shell->input == NULL || ft_strcmp(shell->input, "exit") == 0)
 		{
-			local_exit_status = shell->exit_status;
+			if (g_exit_signal != 0)
+				local_exit_status = g_exit_signal;
+			else
+				local_exit_status = shell->exit_status;
 			free_minishell(shell);
 			ft_printf("exit\n");
 			exit(local_exit_status);
