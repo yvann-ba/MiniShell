@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:31 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 12:36:49 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:53:23 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ t_file	**fill_tab_here_doc(t_token *current, t_minishell *shell,
 	{
 		process_token(current, shell, tab_here_doc, &coord);
 		current = current->next;
+		if (g_exit_signal == 1)
+		{
+			g_exit_signal = 0;
+			break ;
+		}
 	}
 	return (tab_here_doc);
 }
