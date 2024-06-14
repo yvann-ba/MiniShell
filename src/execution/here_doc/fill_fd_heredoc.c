@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 10:28:22 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:43:46 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@ void	read_here_doc(t_minishell *shell, t_file here_doc, char *delimiter,
 
 	while (1)
 	{
-		// if (g_exit_signal == 1)
-		// {
-		// 	g_exit_signal = 0;
-		// 	free(*here_doc_content);
-		// 	free_minishell(shell);
-		// 	free(here_doc.name);
-		// 	close(here_doc.fd);
-		// 	printf("\n\nHEY JE PARS \n\n");
-		// 	exit(130);
-		// }
 		temp = read_and_process_line(delimiter);
 		if (temp == NULL)
 		{
@@ -85,14 +75,26 @@ void	write_here_doc(t_minishell *shell, t_file here_doc,
 	exit(EXIT_SUCCESS);
 }
 
-void	remember_fd_here_doc(t_file here_doc)
+void	remember_fd_here_doc(t_file *here_doc, t_minishell *shell)
 {
-	static int	fd = 0;
+	static int			cnt_call = 0;
+	static int			fd = 0;
+	static t_file		*here_doc_s = NULL;
+	static t_minishell	*shell_s = NULL;
 	
-	if (fd == 0)
-		fd = here_doc.fd;
+	if (cnt_call == 0)
+	{
+		fd = here_doc->fd;
+		here_doc_s = here_doc;
+		shell_s = shell;
+		cnt_call++;
+	}
 	else
+	{
 		close(fd);
+		free_minishell(shell_s);
+		free(here_doc_s->name);
+	}
 }
 
 void	handle_here_doc(t_minishell *shell, t_file here_doc,
@@ -102,7 +104,7 @@ void	handle_here_doc(t_minishell *shell, t_file here_doc,
 
 	here_doc_content = NULL;
 	
-	remember_fd_here_doc(here_doc);
+	remember_fd_here_doc(&here_doc, shell);
 	init_signals();
 	read_here_doc(shell, here_doc, delimiter, &here_doc_content);
 	write_here_doc(shell, here_doc, here_doc_content, replace_env);

@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 11:11:39 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/14 12:48:27 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ t_list		*replace_env_variable(const char *content, t_pos_len *dollars,
 t_list		*fill_content_enough_variable_env(const char *content,
 				t_pos_len *dollars, int num_vars);
 char		*replace_content(t_list *list_content, t_list *list_vars);
-void		remember_fd_here_doc(t_file here_doc);
+void		remember_fd_here_doc(t_file *here_doc, t_minishell *shell);
 
 //OPEN_FILE
 void		open_file_in(t_file *file, int index, t_minishell *shell);
@@ -288,6 +288,7 @@ int			open_file_and_handle_errors(t_minishell *shell,
 				t_file here_doc_cpy);
 char		*get_variable_path(char **env);
 int			file_exist_in_directory(char *path, char *file);
+int			is_valid_fd(int fd);
 
 //UTILS TO EXEC
 const char	*here_doc_replace_var_env(const char *content, t_minishell *shell);
