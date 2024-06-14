@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 12:52:23 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 15:41:42 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 // 	}
 // 	return (here_doc);
 // }
-
 
 t_file	here_doc(t_token *current, t_minishell *shell, int replace_env,
 		t_file **tab_here_doc)

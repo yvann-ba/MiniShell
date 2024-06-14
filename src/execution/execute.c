@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:29 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 15:13:57 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 15:41:09 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	contains_only(const char *str, const char *allowed)
 			if (str[i] == allowed[j])
 			{
 				found = 1;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -60,9 +60,10 @@ static void	check_commands(t_minishell *shell, int i)
 		if (shell->redirect_array[i].argv != NULL
 			&& check_builtins(shell->redirect_array[i].argv[0]) != 1)
 		{
-			if ( check_invalid_folder( shell->redirect_array[i].argv[0], shell) == 0)
+			if (check_invalid_folder(
+					shell->redirect_array[i].argv[0], shell) == 0)
 				shell->redirect_array[i].argv[0] = check_command_existence(
-					shell->redirect_array[i].argv[0], shell->env);
+						shell->redirect_array[i].argv[0], shell->env);
 			if (shell->redirect_array[i].argv[0] == NULL)
 				ft_putstr_fd("minishell: command not found\n", 2);
 		}
@@ -76,12 +77,12 @@ static void	execute_commands(t_minishell *shell, int i, int pipes[MAX_PIPES][2])
 	{
 		if (shell->redirect_array[i].argv != NULL
 			&& shell->redirect_array[i].argv[0] != NULL
-				&& check_invalid_folder(
+			&& check_invalid_folder(
 				shell->redirect_array[i].argv[0], shell) == 0)
 			ft_exec(shell->redirect_array, i, shell, pipes);
 		if (check_invalid_folder(
 				shell->redirect_array[i].argv[0], shell) == 1)
-				ft_putstr_fd("minishell: syntax error: unexpected path\n", 2);
+			ft_putstr_fd("minishell: syntax error: unexpected path\n", 2);
 		i++;
 	}
 }
@@ -89,7 +90,6 @@ static void	execute_commands(t_minishell *shell, int i, int pipes[MAX_PIPES][2])
 void	execute_command_shell(t_minishell *shell)
 {
 	int		i;
-	
 
 	i = 0;
 	init_pipes(shell->pipes);
@@ -100,8 +100,9 @@ void	execute_command_shell(t_minishell *shell)
 		{
 			execute_commands(shell, i, shell->pipes);
 			if (shell->redirect_array[i].argv != NULL
-				&& shell->redirect_array[i].argv[0] != NULL && check_invalid_folder(
-				shell->redirect_array[0].argv[0], shell) == 0)
+				&& shell->redirect_array[i].argv[0] != NULL
+				&& check_invalid_folder(
+					shell->redirect_array[0].argv[0], shell) == 0)
 				shell->exit_status = handle_wait(shell);
 		}
 	}

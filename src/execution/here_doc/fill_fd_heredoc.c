@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 12:43:46 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 15:42:27 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	remember_fd_here_doc(t_file *here_doc, t_minishell *shell)
 	static int			fd = 0;
 	static t_file		*here_doc_s = NULL;
 	static t_minishell	*shell_s = NULL;
-	
+
 	if (cnt_call == 0)
 	{
 		fd = here_doc->fd;
@@ -103,7 +103,7 @@ void	handle_here_doc(t_minishell *shell, t_file here_doc,
 	char	*here_doc_content;
 
 	here_doc_content = NULL;
-	
+
 	remember_fd_here_doc(&here_doc, shell);
 	init_signals();
 	read_here_doc(shell, here_doc, delimiter, &here_doc_content);

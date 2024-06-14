@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:30:21 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 12:02:57 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/14 15:36:02 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,36 @@ static int	check_and_print_error(t_token *arg_lst, int *exit_status)
 
 static void	print_environment(char **env, int *exit_status)
 {
-    int		i;
-    char	*current_pwd;
-    char	*new_pwd;
-    int		new_pwd_assigned;
+	int		i;
+	char	*current_pwd;
+	char	*new_pwd;
+	int		new_pwd_assigned;
 
-    current_pwd = getcwd(NULL, 0);
-    if (current_pwd != NULL)
-    {
-        new_pwd = ft_strjoin("PWD=", current_pwd);
-        if (new_pwd != NULL)
-        {
-            i = 0;
-            new_pwd_assigned = 0;
-            while (env[i] != NULL)
-            {
-                if (strncmp(env[i], "PWD=", 4) == 0)
-                {
-                    free(env[i]);
-                    env[i] = new_pwd;
-                    new_pwd_assigned = 1;
-                    break ;
-                }
-                i++;
-            }
-            if (!new_pwd_assigned)
-                free(new_pwd);
-        }
-        free(current_pwd);
-    }
-    environment_trail(env, exit_status);
+	current_pwd = getcwd(NULL, 0);
+	if (current_pwd != NULL)
+	{
+		new_pwd = ft_strjoin("PWD=", current_pwd);
+		if (new_pwd != NULL)
+		{
+			i = 0;
+			new_pwd_assigned = 0;
+			while (env[i] != NULL)
+			{
+				if (strncmp(env[i], "PWD=", 4) == 0)
+				{
+					free(env[i]);
+					env[i] = new_pwd;
+					new_pwd_assigned = 1;
+					break ;
+				}
+				i++;
+			}
+			if (!new_pwd_assigned)
+				free(new_pwd);
+		}
+		free(current_pwd);
+	}
+	environment_trail(env, exit_status);
 }
 
 void	ft_env(t_token *arg_lst, char **env, int *exit_status)

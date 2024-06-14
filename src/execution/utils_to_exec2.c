@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:24:42 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 14:24:53 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 15:43:32 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	is_file(const char *path)
 {
 	struct stat	statbuf;
 
-	if (!path)	
+	if (!path)
 		return (-1);
 	if (stat(path, &statbuf) == -1)
 		return (-1);
@@ -75,7 +75,7 @@ int	handle_wait(t_minishell *shell)
 	waitpid(shell->redirect_array[shell->nb_cmds - 1].pid, &status, 0);
 	close_fd_pipe(shell->pipes);
 	nb_cmds = shell->nb_cmds;
-	while(0 < nb_cmds)
+	while (0 < nb_cmds)
 	{
 		waitpid(shell->redirect_array[nb_cmds - 1].pid, &status, 0);
 		nb_cmds--;
@@ -87,7 +87,6 @@ int	handle_wait(t_minishell *shell)
 	signal(SIGINT, handle_sigint);
 	return (last_status);
 }
-
 
 int	is_not_token_word(t_token *current)
 {
