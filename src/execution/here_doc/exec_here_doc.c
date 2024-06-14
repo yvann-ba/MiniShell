@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:25:47 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/14 12:43:22 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 	pid = fork();
 	if (pid == 0)
 	{
+		rl_catch_signals = 1;
 		handle_here_doc(shell, here_doc, delimiter, replace_env);
 	}
 	else if (pid > 0)
@@ -100,6 +101,44 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 	}
 	return (here_doc);
 }
+
+// static t_file fork_here_doc(char *delimiter, t_minishell *shell,
+// 	int replace_env, t_file **tab_here_doc)
+// {
+// 	pid_t	pid;
+// 	int		status;
+// 	t_file	here_doc;
+// 	int		term_sig;
+
+// 	here_doc.name = generate_and_assign_filename(shell);
+// 	here_doc.fd = open_file_and_handle_errors(shell, here_doc);
+// 	shell->tab_here_doc = tab_here_doc;
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		handle_here_doc(shell, here_doc, delimiter, replace_env);
+// 	}
+// 	else if (pid > 0)
+// 	{
+// 		waitpid(pid, &status, 0);
+// 		if (WIFEXITED(status))
+// 			printf("Child exited with status %d\n", WEXITSTATUS(status));
+// 		else if (WIFSIGNALED(status))
+// 		{
+// 			term_sig = WTERMSIG(status);
+// 			printf("Child terminated by signal %d\n", term_sig);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		perror("Error:\nduring fork_here_doc");
+// 		free_minishell(shell);
+// 		shell->exit_status = 1;
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	return (here_doc);
+// }
+
 
 t_file	here_doc(t_token *current, t_minishell *shell, int replace_env,
 		t_file **tab_here_doc)

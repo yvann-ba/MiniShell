@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 10:18:27 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:32:32 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	handle_sigint_here_doc(int sig)
 {
 	(void)sig;
 	g_exit_signal = 1;
+	remember_fd_here_doc(NULL, NULL);
+	printf("---------QUIT HERE_DOC : 130\n");
 	exit(130);
 }
 
