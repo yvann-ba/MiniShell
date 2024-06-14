@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 14:02:29 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:16:51 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ int			update_existing_var(char *var, char ***env,
 				int var_len, t_minishell *shell);
 char		**create_new_env_array(char *var, char ***env,
 				t_minishell *shell);
+void		set_pwd_if_not_defined(char ***env);
+void		increment_shlvl(char ***env);
 
 //EXIT_UTILS
 int			check_numbers_arg_exit(char *endptr, t_token *current,
