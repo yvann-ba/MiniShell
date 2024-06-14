@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 10:27:20 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/14 11:11:39 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int			identify_double_char_tokens(const char **input,
 void		add_token_based_on_char(const char **input,
 				t_token **head, char **env, t_minishell *shell);
 int			handle_syntax_error(char **final_value,
-				t_token **head, char quote_type);
+				t_token **head, char quote_type, t_minishell *shell);
 
 //TOKENIZATION_UTILS
 int			is_special_char(char c);
@@ -133,8 +133,6 @@ char		*add_quoted_token(const char **input, t_token **head,
 void		add_word_token(const char **input, t_token **head, char **env,
 				t_minishell *shell);
 void		free_tokens(t_token **tokens);
-int			handle_syntax_error(char **final_value,
-				t_token **head, char quote_type);
 void		identify_and_add_token(const char **input,
 				t_token **head, char **env, t_minishell *shell);
 void		handle_quotes(const char **input, t_token **head,
