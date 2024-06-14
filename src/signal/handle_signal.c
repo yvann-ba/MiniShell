@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 13:52:44 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/14 10:18:27 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	handle_sigint_here_doc(int sig)
 {
 	(void)sig;
 	g_exit_signal = 1;
-	return ;
+	exit(130);
 }
 
 void	init_signal_handlers(void)
