@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 14:16:51 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 11:14:07 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_minishell
 	int			env_size;
 	int			syntax_error;
 	int			pipes[MAX_PIPES][2];
-	int 		reset_exc;
+	int			reset_exc;
 
 }	t_minishell;
 
@@ -199,6 +199,8 @@ char		**create_new_env_array(char *var, char ***env,
 				t_minishell *shell);
 void		set_pwd_if_not_defined(char ***env);
 void		increment_shlvl(char ***env);
+void		update_env_with_pwd(char **env, char *new_pwd);
+char		*create_new_pwd(void);
 
 //EXIT_UTILS
 int			check_numbers_arg_exit(char *endptr, t_token *current,
@@ -251,6 +253,8 @@ void		ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 void		init_pipes(int pipes[MAX_PIPES][2]);
 int			handle_wait(t_minishell *shell);
 int			is_not_token_word(t_token *current);
+void		handle_execute(t_minishell *shell, t_redirect *redirect_array,
+				int index);
 
 //HERE_DOC
 t_file		here_doc(t_token *current, t_minishell *shell, int replace_env,
