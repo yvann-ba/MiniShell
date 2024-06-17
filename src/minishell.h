@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:45:15 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:59:43 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ t_list		*fill_content_enough_variable_env(const char *content,
 				t_pos_len *dollars, int num_vars);
 char		*replace_content(t_list *list_content, t_list *list_vars);
 void		remember_fd_here_doc(t_file *here_doc, t_minishell *shell);
+void		handle_fork_error(t_minishell *shell);
 
 //OPEN_FILE
 void		open_file_in(t_file *file, int index, t_minishell *shell);

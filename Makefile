@@ -42,6 +42,7 @@ src/readline/utils_check.c src/execution/here_doc/exec_here_doc.c \
 src/readline/utils_fd.c src/execution/here_doc/fill_struct_here_doc.c src/execution/here_doc/fill_struct_tab_here_doc.c \
 src/execution/utils_to_exec.c src/execution/utils_to_exec2.c \
 src/execution/here_doc/replace_env_variable_here_doc.c src/execution/open_file.c \
+src/execution/here_doc/heredoc_utils.c \
 src/execution/execute_utils.c \
 src/execution/execute_final.c src/execution/here_doc/join_content_heredoc_with_variable.c \
 src/execution/here_doc/replace_content_var_in_heredoc.c src/tokenization/init_token.c

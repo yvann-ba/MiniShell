@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:46:38 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:55:57 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 		term_sig = WEXITSTATUS(status);
 		if (term_sig == 130)
 			g_exit_signal = 1;
-		perror("Error:\nduring fork_here_doc");
-		free_minishell(shell);
-		shell->exit_status = 1;
-		exit(EXIT_FAILURE);
+		handle_fork_error(shell);
 	}
 	return (here_doc);
 }
