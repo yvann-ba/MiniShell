@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:14:07 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:45:15 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ void		handle_input(t_minishell *shell);
 void		free_history(char *history[MAX_HISTORY_SIZE]);
 void		init_history(char *history[MAX_HISTORY_SIZE]);
 void		process_input(t_minishell *shell);
+int			execute_builtins_helper(t_token *arg_lst, t_minishell *shell);
 
 //BUILTINS
 void		ft_echo(t_token *tokens, int *exit_status, t_minishell *shell);

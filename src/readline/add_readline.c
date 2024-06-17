@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 12:04:03 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:44:33 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,17 @@ void	process_input(t_minishell *shell)
 int	execute_builtins(int argc, char **argv, t_minishell *shell)
 {
 	t_token	*arg_lst;
+	int		result;
 
 	if (!argv || !argv[0])
 		return (1);
 	arg_lst = convert_argv_to_list(argc, argv);
-	if (ft_strcmp(arg_lst->value, "echo") == 0)
-		ft_echo(arg_lst, &shell->exit_status, shell);
-	else if (ft_strcmp(arg_lst->value, "cd") == 0)
-		ft_cd(arg_lst, shell->env, &shell->exit_status);
-	else if (ft_strcmp(arg_lst->value, "pwd") == 0)
-		ft_pwd(arg_lst, &shell->exit_status);
-	else if (ft_strcmp(arg_lst->value, "export") == 0)
-		ft_export(arg_lst, &(shell->env), &shell->exit_status, shell);
-	else if (ft_strcmp(arg_lst->value, "unset") == 0)
-		ft_unset(arg_lst, &shell->env, &shell->exit_status);
-	else if (ft_strcmp(arg_lst->value, "env") == 0
-		&& arg_lst->value[3] == '\0')
-		ft_env(arg_lst, shell->env, &shell->exit_status);
-	else if (ft_strcmp(arg_lst->value, "exit") == 0)
+	result = execute_builtins_helper(arg_lst, shell);
+	if (!result)
 	{
-		ft_exit(arg_lst, shell);
+		printf("minishell: %s: command not found\n", arg_lst->value);
+		free_tokens(&arg_lst);
+		return (0);
 	}
 	free_tokens(&arg_lst);
 	return (1);
