@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_fd_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 15:42:27 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 11:28:46 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	read_here_doc(t_minishell *shell, t_file here_doc, char *delimiter,
 {
 	char	*temp;
 	char	*temp2;
-	(void)here_doc;
 
+	(void)here_doc;
 	while (1)
 	{
 		temp = read_and_process_line(delimiter);
@@ -73,28 +73,6 @@ void	write_here_doc(t_minishell *shell, t_file here_doc,
 	free(here_doc_content);
 	free(here_doc_content_env);
 	exit(EXIT_SUCCESS);
-}
-
-void	remember_fd_here_doc(t_file *here_doc, t_minishell *shell)
-{
-	static int			cnt_call = 0;
-	static int			fd = 0;
-	static t_file		*here_doc_s = NULL;
-	static t_minishell	*shell_s = NULL;
-
-	if (cnt_call == 0)
-	{
-		fd = here_doc->fd;
-		here_doc_s = here_doc;
-		shell_s = shell;
-		cnt_call++;
-	}
-	else
-	{
-		close(fd);
-		free_minishell(shell_s);
-		free(here_doc_s->name);
-	}
 }
 
 void	handle_here_doc(t_minishell *shell, t_file here_doc,
