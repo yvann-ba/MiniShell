@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/14 11:47:19 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 12:04:03 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,20 @@ int	execute_builtins(int argc, char **argv, t_minishell *shell)
 	if (!argv || !argv[0])
 		return (1);
 	arg_lst = convert_argv_to_list(argc, argv);
-	if (ft_strncmp(arg_lst->value, "echo", 4) == 0)
+	if (ft_strcmp(arg_lst->value, "echo") == 0)
 		ft_echo(arg_lst, &shell->exit_status, shell);
-	else if (ft_strncmp(arg_lst->value, "cd", 2) == 0)
+	else if (ft_strcmp(arg_lst->value, "cd") == 0)
 		ft_cd(arg_lst, shell->env, &shell->exit_status);
-	else if (ft_strncmp(arg_lst->value, "pwd", 3) == 0)
+	else if (ft_strcmp(arg_lst->value, "pwd") == 0)
 		ft_pwd(arg_lst, &shell->exit_status);
-	else if (ft_strncmp(arg_lst->value, "export", 6) == 0)
+	else if (ft_strcmp(arg_lst->value, "export") == 0)
 		ft_export(arg_lst, &(shell->env), &shell->exit_status, shell);
-	else if (ft_strncmp(arg_lst->value, "unset", 5) == 0)
+	else if (ft_strcmp(arg_lst->value, "unset") == 0)
 		ft_unset(arg_lst, &shell->env, &shell->exit_status);
-	else if (ft_strncmp(arg_lst->value, "env", 3) == 0
+	else if (ft_strcmp(arg_lst->value, "env") == 0
 		&& arg_lst->value[3] == '\0')
 		ft_env(arg_lst, shell->env, &shell->exit_status);
-	else if (ft_strncmp(arg_lst->value, "exit", 4) == 0)
+	else if (ft_strcmp(arg_lst->value, "exit") == 0)
 	{
 		ft_exit(arg_lst, shell);
 	}
