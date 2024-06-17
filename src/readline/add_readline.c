@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:52:17 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 14:47:27 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	execute_command_logic(t_minishell *shell)
 	}
 	else
 	{
-		if (shell->redirect_array->argv[0] == NULL)
+		if (shell->redirect_array->argv[0] == NULL
+			|| ft_strcmp(shell->redirect_array->argv[0], "") == 0)
 		{
 			ft_putstr_fd("minishell: command not found\n", 2);
 			shell->exit_status = 127;
