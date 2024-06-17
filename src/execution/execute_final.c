@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:07 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/12 13:39:19 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 11:36:22 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static void	handle_execute(t_minishell *shell, t_redirect *redirect_array,
 		free_minishell(shell);
 		ft_putstr_fd("minishell: command not found\n", 2);
 		exit(127);
-		
 	}
 	exit(EXIT_FAILURE);
 }
