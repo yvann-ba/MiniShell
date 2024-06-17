@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subtitute_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:29:13 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/03 11:06:34 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 11:16:17 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,16 @@ static char	*get_env_var(const char *input, char **env, t_minishell *shell)
 		return (NULL);
 	value = ft_getenv(key, env);
 	free(key);
-	if (value)
+		if (value)
 		return (ft_strdup(value));
 	return (ft_strdup(""));
 }
 
 char	*substitute_var(const char *input, char **env, t_minishell *shell)
 {
+	char	*env_var;
+
+	env_var = NULL;
 	if (input[0] == '$')
 	{
 		if (input[1] == '?')
@@ -76,7 +79,8 @@ char	*substitute_var(const char *input, char **env, t_minishell *shell)
 				return (get_exit_status_str(shell->exit_status));
 		}
 		input++;
-		return (get_env_var(input, env, shell));
+		env_var = get_env_var(input, env, shell);
+		return (env_var);
 	}
-	return (ft_strdup(input));
+	return ((char *)input);
 }

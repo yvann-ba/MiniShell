@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_final.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:07 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:26:32 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 12:50:36 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 	if (index < shell->nb_cmds - 1)
 		pipe(pipes[index]);
 	signal(SIGINT, handle_nothing);
-	//signal(SIGQUIT, handle_nothing);
+	signal(SIGQUIT, handle_nothing);
 	pid = fork();
 	redirect_array->pid = pid;
 	if (pid == -1)
@@ -125,10 +125,8 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 		handle_execute(shell, redirect_array, index);
 	}
 	else if (index < shell->nb_cmds - 1)
-	{
 		if (pipes[index][WRITE_END] != -1)
 			close(pipes[index][WRITE_END]);
-	}
 	g_exit_signal = 0;
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, handle_sigquit);

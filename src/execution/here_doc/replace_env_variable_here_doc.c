@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_env_variable_here_doc.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:45:52 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:12:08 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 11:31:38 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_pos_len	*allocate_and_fill_dollars(const char *content,
 			dollars[j].pos = i;
 			dollars[j].len = len_to_dollars(content, i);
 			dollars[j].origin_len = find_origin_len(content, i);
-			ft_printf("origin_len %d\n", dollars[j].origin_len);
+			//ft_printf("origin_len %d\n", dollars[j].origin_len);
 			j++;
 		}
 		i++;
@@ -83,7 +83,7 @@ static char	*process_content_and_vars(const char *content, t_pos_len *dollars,
 	list_vars = replace_env_variable(
 			content, dollars, counter_dollars(content), shell);
 	new_content = replace_content(list_content, list_vars);
-	ft_free_lst(list_vars);
+	ft_free_lst_char(list_vars);
 	ft_free_lst_char(list_content);
 	return (new_content);
 }
