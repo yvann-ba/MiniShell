@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subtitute_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:29:13 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:16:17 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:48:54 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*get_env_var(const char *input, char **env, t_minishell *shell)
 		return (NULL);
 	value = ft_getenv(key, env);
 	free(key);
-		if (value)
+	if (value)
 		return (ft_strdup(value));
 	return (ft_strdup(""));
 }

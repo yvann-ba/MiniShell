@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_env_variable_here_doc.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:45:52 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:31:38 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:51:54 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static t_pos_len	*allocate_and_fill_dollars(const char *content,
 			dollars[j].pos = i;
 			dollars[j].len = len_to_dollars(content, i);
 			dollars[j].origin_len = find_origin_len(content, i);
-			//ft_printf("origin_len %d\n", dollars[j].origin_len);
 			j++;
 		}
 		i++;

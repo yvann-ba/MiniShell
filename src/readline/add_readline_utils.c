@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/13 14:20:09 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:48:43 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,26 @@ void	handle_input(t_minishell *shell)
 	if (ft_strcmp(shell->input, "") == 0)
 		return ;
 	process_input(shell);
+}
+
+int	execute_builtins_helper(t_token *arg_lst, t_minishell *shell)
+{
+	if (ft_strcmp(arg_lst->value, "echo") == 0)
+		ft_echo(arg_lst, &shell->exit_status, shell);
+	else if (ft_strcmp(arg_lst->value, "cd") == 0)
+		ft_cd(arg_lst, shell->env, &shell->exit_status);
+	else if (ft_strcmp(arg_lst->value, "pwd") == 0)
+		ft_pwd(arg_lst, &shell->exit_status);
+	else if (ft_strcmp(arg_lst->value, "export") == 0)
+		ft_export(arg_lst, &(shell->env), &shell->exit_status, shell);
+	else if (ft_strcmp(arg_lst->value, "unset") == 0)
+		ft_unset(arg_lst, &shell->env, &shell->exit_status);
+	else if (ft_strcmp(arg_lst->value, "env") == 0
+		&& arg_lst->value[3] == '\0')
+		ft_env(arg_lst, shell->env, &shell->exit_status);
+	else if (ft_strcmp(arg_lst->value, "exit") == 0)
+		ft_exit(arg_lst, shell);
+	else
+		return (0);
+	return (1);
 }

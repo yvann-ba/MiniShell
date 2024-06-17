@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:28:46 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 13:52:47 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	handle_here_doc(t_minishell *shell, t_file here_doc,
 	char	*here_doc_content;
 
 	here_doc_content = NULL;
-
 	remember_fd_here_doc(&here_doc, shell);
 	init_signals();
 	read_here_doc(shell, here_doc, delimiter, &here_doc_content);

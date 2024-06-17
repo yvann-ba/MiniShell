@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_content_heredoc_with_variable.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:45:10 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 11:30:19 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:51:42 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static t_list	*string_enough_var(const char *content, t_pos_len *dollars,
 		i++;
 	}
 	if ((size_t)start < ft_strlen(content))
-		add_substring_to_list(content, (start + 1), (int)ft_strlen(content), list);
+		add_substring_to_list(content, (start + 1),
+			(int)ft_strlen(content), list);
 	return (*list);
 }
 
@@ -75,7 +76,7 @@ t_list	*replace_env_variable(const char *content, t_pos_len *dollars,
 	while (i < num_vars)
 	{
 		tmp = ft_substr(content, (unsigned int)dollars[i].pos,
-					(size_t)dollars[i].len);
+				(size_t)dollars[i].len);
 		var = substitute_var(tmp, shell->env, shell);
 		if (var == NULL)
 			return (NULL);
