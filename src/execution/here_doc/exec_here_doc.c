@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:46:38 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/17 14:00:44 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 		term_sig = WEXITSTATUS(status);
 		if (term_sig == 130)
 			g_exit_signal = 1;
+	}
+	else
+	{
 		perror("Error:\nduring fork_here_doc");
 		free_minishell(shell);
 		shell->exit_status = 1;
