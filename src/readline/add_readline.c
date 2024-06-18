@@ -6,24 +6,11 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:52:11 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 14:47:27 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/18 12:07:34 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	debug_print_tokens(t_token *tokens)
-{
-	t_token	*current;
-
-	current = tokens;
-	while (current != NULL)
-	{
-		ft_printf("Type de Token: %d, quote: %d, Valeur: %s\n",
-			current->type, current->quote_type, current->value);
-		current = current->next;
-	}
-}
 
 static void	execute_command_logic(t_minishell *shell)
 {

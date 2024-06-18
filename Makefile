@@ -5,7 +5,7 @@ LIBFT_LIBRARY = $(LIBFT)/libft.a
 
 CC = /bin/cc
 
-CFLAGS = -Wextra -Werror -Wall -g -I $(LIBFT)
+CFLAGS = -Wextra -Werror -Wall -I $(LIBFT)
 
 LDFLAGS = -L $(LIBFT) -lft -lreadline
 
