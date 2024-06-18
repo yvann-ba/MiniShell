@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/18 09:31:33 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/18 11:46:35 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,22 @@ void	handle_sigquit_here_doc(int sig)
 	exit(131);
 }
 
+void	handle_sigquit_two(int sig)
+{
+	(void)sig;
+	printf("Quit (core dumped)\n");
+	g_exit_signal = 131;
+}
+
 void	handle_nothing(int sig)
 {
 	(void)sig;
 	printf("\n");
+}
+
+void	handle_nothing_two(int sig)
+{
+	(void)sig;
 }
 
 void	handle_sigint(int sig)

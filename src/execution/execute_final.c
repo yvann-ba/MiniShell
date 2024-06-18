@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_final.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:07 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/18 10:58:16 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/18 11:42:51 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,5 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 			close(pipes[index][WRITE_END]);
 	g_exit_signal = 0;
 	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit_two);
 }

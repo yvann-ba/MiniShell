@@ -6,7 +6,7 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:53:02 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:48:43 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/18 11:45:28 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	read_input(t_minishell *shell)
 			free(shell->input);
 			shell->input = NULL;
 		}
+		signal(SIGQUIT, handle_nothing_two);
 		shell->input = readline("minishell > ");
 		if (shell->input == NULL || ft_strcmp(shell->input, "exit") == 0)
 		{
