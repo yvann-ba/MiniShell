@@ -6,7 +6,7 @@
 /*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:47:07 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 12:50:36 by lauger           ###   ########.fr       */
+/*   Updated: 2024/06/18 10:58:16 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	handle_dup_close(int index, t_redirect *redirect_array,
 		|| shell->redirect_array[index].outfile.fd == -2)
 	{
 		free_minishell(shell);
+		close_fd_pipe(pipes);
 		exit(1);
 	}
 	if (index < shell->nb_cmds - 1)
@@ -111,7 +112,6 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 	if (index < shell->nb_cmds - 1)
 		pipe(pipes[index]);
 	signal(SIGINT, handle_nothing);
-	signal(SIGQUIT, handle_nothing);
 	pid = fork();
 	redirect_array->pid = pid;
 	if (pid == -1)
@@ -129,5 +129,4 @@ void	ft_exec(t_redirect *redirect_array, int index, t_minishell *shell,
 			close(pipes[index][WRITE_END]);
 	g_exit_signal = 0;
 	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
 }
