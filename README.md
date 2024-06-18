@@ -4,6 +4,11 @@
 
 Minishell is a simplified [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) shell environment capable of parsing commands and launching executables with arguments, plus several built-in functions. 🚀
 
+#### ⭐ My 42 score for this project:
+![image](https://github.com/yvann-ba/MiniShell/assets/97234242/5938d8bf-8a37-45fb-b53f-1f10d7e8eb6e)
+
+#### 📄 Official 42 School Subject:
+https://github.com/rphlr/42-Subjects/blob/main/common-core/minishell/en.subject.pdf
 ## How to use it :
 #### (Works only on Mac or Linux)
 
