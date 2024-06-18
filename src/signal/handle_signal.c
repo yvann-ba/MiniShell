@@ -6,38 +6,43 @@
 /*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/03 10:42:45 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:31:33 by ybarbot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_sigint(int sig)
-{
-	(void)sig;
-	write(STDOUT_FILENO, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	g_exit_signal = 130;
-}
-
 void	handle_sigquit(int sig)
 {
 	(void)sig;
+	printf("Quit (core dumped)\n");
+	g_exit_signal = 1;
+	remember_fd_here_doc(NULL, NULL);
+	exit(130);
+}
+
+void	handle_sigquit_here_doc(int sig)
+{
+	(void)sig;
+	printf("Quit (core dumped)\n");
 	g_exit_signal = 2;
+	exit(131);
 }
 
 void	handle_nothing(int sig)
 {
 	(void)sig;
+	printf("\n");
 }
 
-void	handle_sigint_here_doc(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
-	g_exit_signal = 1;
-	return ;
+	printf("^C\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	g_exit_signal = 130;
 }
 
 void	init_signal_handlers(void)

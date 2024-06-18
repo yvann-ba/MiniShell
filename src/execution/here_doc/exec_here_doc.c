@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/11 10:25:47 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:17:47 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,21 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 	int replace_env, t_file **tab_here_doc)
 {
 	pid_t	pid;
-	int		status;
 	t_file	here_doc;
 
+	//signal(SIGINT, handle_nothing);
+	//signal(SIGQUIT, handle_nothing);
 	here_doc.name = generate_and_assign_filename(shell);
 	here_doc.fd = open_file_and_handle_errors(shell, here_doc);
 	shell->tab_here_doc = tab_here_doc;
 	pid = fork();
 	if (pid == 0)
 	{
+		rl_catch_signals = 1;
 		handle_here_doc(shell, here_doc, delimiter, replace_env);
 	}
 	else if (pid > 0)
-	{
-		waitpid(pid, &status, 0);
-	}
+		handle_parent_process(pid, shell);
 	else
 	{
 		perror("Error:\nduring fork_here_doc");
