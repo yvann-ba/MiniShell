@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_fd_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:44:00 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 13:52:47 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:17:01 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_signals(void)
 {
 	init_signal_handlers();
 	signal(SIGINT, handle_sigint_here_doc);
+	signal(SIGQUIT, handle_sigquit_here_doc);
 }
 
 void	read_here_doc(t_minishell *shell, t_file here_doc, char *delimiter,

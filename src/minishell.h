@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:00:35 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 14:16:42 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:07:13 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void		init_signal_handlers(void);
 void		handle_sigint_here_doc(int sig);
 void		handle_nothing(int sig);
 void		handle_sigint_without_prefix(int sig);
+void		handle_sigquit_here_doc(int sig);
 
 //UTILS
 char		*generate_random_filename(void);

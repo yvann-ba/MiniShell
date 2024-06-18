@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:55:45 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 14:17:27 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:26:46 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	handle_parent_process(pid_t pid, t_minishell *shell)
 	(void)shell;
 	waitpid(pid, &status, 0);
 	term_sig = WEXITSTATUS(status);
-	if (term_sig == 130)
+	if (term_sig == 130 || term_sig == 131)
 		g_exit_signal = 1;
 }

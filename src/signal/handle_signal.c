@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:32:25 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 10:13:19 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:32:18 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	handle_sigquit(int sig)
+{
+	(void)sig;
+	printf("Quit (core dumped)\n");
+	g_exit_signal = 1;
+	remember_fd_here_doc(NULL, NULL);
+	exit(130);
+}
+
+void	handle_sigquit_here_doc(int sig)
+{
+	(void)sig;
+	printf("Quit (core dumped)\n");
+	g_exit_signal = 2;
+	exit(131);
+}
+
+void	handle_nothing(int sig)
+{
+	(void)sig;
+	printf("\n");
+}
 
 void	handle_sigint(int sig)
 {
@@ -20,18 +43,6 @@ void	handle_sigint(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay();
 	g_exit_signal = 130;
-}
-
-void	handle_sigquit(int sig)
-{
-	(void)sig;
-	printf("Quit (core dumped)\n");
-	g_exit_signal = 2;
-}
-
-void	handle_nothing(int sig)
-{
-	(void)sig;
 }
 
 void	handle_sigint_here_doc(int sig)

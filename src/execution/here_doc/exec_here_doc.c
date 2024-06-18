@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbot <ybarbot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lauger <lauger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:43:38 by ybarbot           #+#    #+#             */
-/*   Updated: 2024/06/17 14:16:52 by ybarbot          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:17:47 by lauger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static t_file	fork_here_doc(char *delimiter, t_minishell *shell,
 	pid_t	pid;
 	t_file	here_doc;
 
+	//signal(SIGINT, handle_nothing);
+	//signal(SIGQUIT, handle_nothing);
 	here_doc.name = generate_and_assign_filename(shell);
 	here_doc.fd = open_file_and_handle_errors(shell, here_doc);
 	shell->tab_here_doc = tab_here_doc;
