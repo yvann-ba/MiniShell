@@ -1,7 +1,5 @@
 # Minishell 🐚
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/yvann_mp4?style=social)](https://twitter.com/yvann_mp4)
-
 Minishell is a simplified [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) shell environment capable of parsing commands and launching executables with arguments, plus several built-in functions. 🚀
 
 #### ⭐ My 42 score for this project:
